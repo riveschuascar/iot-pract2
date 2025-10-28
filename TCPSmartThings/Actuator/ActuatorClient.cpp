@@ -45,17 +45,25 @@ void ActuatorClient::registerActuator() {
 }
 
 void ActuatorClient::handle() {
-  // Procesar todos los mensajes pendientes
-  while (wifiClient.connected() && wifiClient.available() >= 2) {
+  while (wifiClient.connected() && wifiClient.available() >= 1) {
     uint8_t cmd = wifiClient.read();
+
     if (cmd == CMD_COMMAND) {
-      uint8_t interval = wifiClient.read();
+      // esperar el byte LEN
+      if (wifiClient.available() < 1) break;
+      uint8_t len = wifiClient.read();
+
+      // esperar los bytes de DATA
+      if (wifiClient.available() < len) break;
+
+      uint8_t interval = wifiClient.read();  // solo hay 1 byte en este caso
       if (interval <= 2) {
         currentInterval = interval;
         Serial.printf(">> Intervalo recibido del servidor: %d\n", interval);
+      } else {
+        Serial.printf("Intervalo inválido: %d\n", interval);
       }
     } else {
-      // Ignorar comandos desconocidos
       Serial.printf("Comando desconocido: 0x%02X\n", cmd);
     }
   }

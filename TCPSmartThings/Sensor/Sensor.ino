@@ -3,7 +3,7 @@
 #include "SensorClient.h"
 
 UltrasonicSensor sensor(27, 26);
-WifiManager wifiManager("UCB-PREMIUM", "lacatoucb");
+WifiManager wifiManager("", "");
 SensorClient server("iot.server", 10000);
 
 void setup() {

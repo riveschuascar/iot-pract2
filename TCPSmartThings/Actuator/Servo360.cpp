@@ -21,10 +21,15 @@ void Servo360::setInterval(uint8_t newInterval) {
     interval = newInterval;
 
     switch (interval) {
-        case 0: oscTime = 200; break; // fast
-        case 1: oscTime = 320; break; // slow
-        case 2: oscTime = 0;   break; // stop
+        case 0: oscTime = 200; break; // rápido
+        case 1: oscTime = 320; break; // lento
+        case 2: oscTime = 0;   break; // detener
     }
+
+    // Reiniciar estado para aplicar el cambio inmediatamente
+    pausing = false;
+    lastOsc = millis();
+    applyPulse(); // aplica el pulso correcto inmediatamente
 }
 
 void Servo360::applyPulse() {

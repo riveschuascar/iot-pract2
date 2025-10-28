@@ -1,7 +1,7 @@
 import socket
 
 # Configuración del servidor
-SERVER_IP = "192.168.118.34"  # Cambiar por IP real si quieres
+SERVER_IP = "192.168.50.204"  # Cambiar por IP real si quieres
 SERVER_PORT = 10000
 
 def enviar_paquete(valor):

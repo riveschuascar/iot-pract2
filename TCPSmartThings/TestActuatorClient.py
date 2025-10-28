@@ -2,7 +2,7 @@ import socket
 import threading
 
 # Configuración del servidor
-SERVER_IP = "192.168.118.34"  # Cambiar por la IP real del servidor
+SERVER_IP = "192.168.50.204"  # Cambiar por la IP real del servidor
 SERVER_PORT = 10000
 
 def escuchar_servidor(sock):
